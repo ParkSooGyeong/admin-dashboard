@@ -108,13 +108,6 @@ const UserList = () => {
 
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
-  // 이미지 크기 설정을 위한 상태
-  const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number }>({ width: 40, height: 40 });
-
-  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const { naturalWidth, naturalHeight } = e.currentTarget;
-    setImageDimensions({ width: naturalWidth, height: naturalHeight });
-  };
 
   const iconSize = 20;
 
@@ -202,13 +195,12 @@ const UserList = () => {
                   <Image
                     src={user.photo}
                     alt={user.name}
-                    width={imageDimensions.width}
-                    height={imageDimensions.height}
+                    width={40}
+                    height={40}
                     className="object-cover rounded-full"
-                    onLoad={handleImageLoad}
                   />
                 ) : (
-                  <Avatar>{user.name.charAt(0)}</Avatar>
+                  <Avatar sx={{ width: 40, height: 40 }}>{user.name.charAt(0)}</Avatar>
                 )}
                 <div>
                   <div className="text-base font-semibold text-gray-900 dark:text-white">{user.name}</div>
